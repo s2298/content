@@ -43,8 +43,15 @@ draft: 1
 
 <!--more-->
 
-- Изменить адрес email технического пользователя `postmaster` с `postmaster@mail.example.org` на `postmaster@example.org`:
+- Убрать из технического email `postmaster@mail.example.org` суб-домен `mail` для того, чтобы письма приходили с домена `postmaster@example.org`:
 
 ```bash
 f='main.cf.in'; d0='/var/lib/pmg/templates'; d1='/etc/pmg/templates'; mkdir "${d1}"; cp "${d0}/${f}" "${d1}/${f}" && echo 'myorigin = $mydomain' | tee -a "${d1}/${f}" > '/dev/null' && pmgconfig sync --restart 1
+```
+
+- [Установить](https://libsys.ru/ru/2025/04/96bdcb5c-a58b-58ae-9e6b-536b49bf1c51/) дополнительные антивирусные базы.
+- Установить пакет `libclamunrar` для работы ClamAV с архивами `.rar`:
+
+```bash
+apt install --yes libclamunrar
 ```
